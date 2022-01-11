@@ -61,7 +61,17 @@ function App() {
       is_active: true,
     },
   ]);
+  
+  const [user, setUser] = useState({
+    name: "",
+    username: "",
+    email: "",
+    is_active: false,
+  });
 
+  const [addEdit, setAddEdit] = useState(1);
+
+  // remove selected user from array
   const removeUser = (uId) => {
     setUsers(
       users.filter((u) => {
@@ -71,17 +81,8 @@ function App() {
       })
     );
   };
-
-  const addUser = () => {
-    setUsers([...users, {
-      id: MaxId() + 1,
-      name: "jana jolovic",
-      email: "janajolovic04@gmail.com",
-      username: "jana",
-      is_active: true,
-    }])
-  }
-
+  
+  // find the greatest id of all users
   const MaxId = () => {
     let maxId = 0;
     users.forEach((u) => {
@@ -90,8 +91,97 @@ function App() {
     })
     return maxId;
   }
+
+  // changing input
+  const inputHandler = (e) => {
+    e.preventDefault();
+    setUser((prevState) => {
+      if (e.target.name === "is_active") {
+        return {
+          ...prevState,
+          [e.target.name]: !user.is_active,
+        };
+      } else {
+        return {
+          ...prevState,
+          [e.target.name]: e.target.value,
+        };
+      }
+    });
+  };
+  
+  // add new user to array
+  const addNewUser = () => {
+    setUsers([...users, { id: MaxId() + 1, ...user }]);
+    setUser({
+      name: "",
+      username: "",
+      email: "",
+      is_active: false,
+    });
+  };
+  
+  // fill the form
+  const editUser = (uId) => {
+    let editedUser = users.filter(u => u.id === uId)
+    setUser(editedUser[0]);
+    setAddEdit(2);
+  } 
+
+  // edit (change) the users info after filling the form
+  const SaveEditedUser = (uId) => {
+    setUsers(prevState => {
+      return prevState.map(u => {
+        if (uId === u.id) {
+          return user 
+        } else return u;
+      })
+    })
+    setAddEdit(1);
+    setUser({name: "",
+    username: "",
+    email: "",
+    is_active: false});
+  }
+
   return (
     <div className="container">
+      <div className="form-container">
+        <input
+          type="text"
+          name="name"
+          value={user.name}
+          onChange={(e) => {
+            inputHandler(e);
+          }}
+        />
+        <input
+          type="text"
+          name="username"
+          value={user.username}
+          onChange={(e) => {
+            inputHandler(e);
+          }}
+        />
+        <input
+          type="text"
+          name="email"
+          value={user.email}
+          onChange={(e) => {
+            inputHandler(e);
+          }}
+        />
+        <input
+          type="checkbox"
+          name="is_active"
+          checked={user.is_active}
+          onChange={(e) => {
+            inputHandler(e);
+          }}
+        />
+        {addEdit === 1 &&<button onClick={addNewUser}>Add user</button>}
+        {addEdit === 2 && <button onClick={() => {SaveEditedUser(user.id)}}>Save</button>}
+      </div>
       <table className="user-table">
         <thead>
           <tr>
@@ -105,11 +195,10 @@ function App() {
         </thead>
         <tbody>
           {users.map((u) => {
-            return <User key={u.id} usr={u} rmUser={removeUser} />;
+            return <User key={u.id} usr={u} rmUser={removeUser} editUser={editUser}/>;
           })}
         </tbody>
       </table>
-      <button onClick={addUser}>Add user</button>
     </div>
   );
 }

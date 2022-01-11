@@ -1,6 +1,6 @@
 import React from "react";
 
-const User = ({ usr, rmUser }) => {
+const User = ({ usr, rmUser, editUser}) => {
   return (
     <tr>
       <td>{usr.id}</td>
@@ -16,7 +16,10 @@ const User = ({ usr, rmUser }) => {
         >
           Remove
         </button>
-        <button>Edit</button>
+        <button onClick={() => {
+          editUser(usr.id)
+        }}>
+          Edit</button>
       </td>
     </tr>
   );
