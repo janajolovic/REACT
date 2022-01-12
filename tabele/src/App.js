@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Form from "./components/Form";
 import User from "./components/User";
 
 function App() {
@@ -146,42 +147,12 @@ function App() {
 
   return (
     <div className="container">
-      <div className="form-container">
-        <input
-          type="text"
-          name="name"
-          value={user.name}
-          onChange={(e) => {
-            inputHandler(e);
-          }}
-        />
-        <input
-          type="text"
-          name="username"
-          value={user.username}
-          onChange={(e) => {
-            inputHandler(e);
-          }}
-        />
-        <input
-          type="text"
-          name="email"
-          value={user.email}
-          onChange={(e) => {
-            inputHandler(e);
-          }}
-        />
-        <input
-          type="checkbox"
-          name="is_active"
-          checked={user.is_active}
-          onChange={(e) => {
-            inputHandler(e);
-          }}
-        />
-        {addEdit === 1 &&<button onClick={addNewUser}>Add user</button>}
-        {addEdit === 2 && <button onClick={() => {SaveEditedUser(user.id)}}>Save</button>}
-      </div>
+      <Form 
+        inputHandler={inputHandler} 
+        addNewUser={addNewUser} 
+        user={user} 
+        SaveEditedUser={SaveEditedUser}
+        addEdit={addEdit}/>
       <table className="user-table">
         <thead>
           <tr>
@@ -200,6 +171,7 @@ function App() {
         </tbody>
       </table>
     </div>
+
   );
 }
 
