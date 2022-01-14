@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Form = ({inputHandler, SaveEditedUser, user, addNewUser, addEdit}) => {
+const Form = ({inputHandler, SaveEditedUser, user, addUser, addEdit, CancelEditedUser}) => {
     return (
         <div className="form-container">
         <input
@@ -28,15 +28,18 @@ const Form = ({inputHandler, SaveEditedUser, user, addNewUser, addEdit}) => {
           }}
         />
         <input
-          type="checkbox"
-          name="is_active"
-          checked={user.is_active}
+          type="password"
+          name="password"
+          value={user.password}
           onChange={(e) => {
             inputHandler(e);
           }}
         />
-        {addEdit === 1 &&<button onClick={addNewUser}>Add user</button>}
-        {addEdit === 2 && <button onClick={() => {SaveEditedUser(user.id)}}>Save</button>}
+        {addEdit === 1 &&<button onClick={addUser}>Add user</button>}
+        {addEdit === 2 && <div>
+          <button onClick={() => {SaveEditedUser(user.id)}}>Save</button>
+          <button onClick={CancelEditedUser}>Cancel</button>
+          </div>}
       </div>
     )
 }
