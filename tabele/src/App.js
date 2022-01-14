@@ -1,3 +1,4 @@
+import { getByTestId, getByTitle } from "@testing-library/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./App.css";
@@ -36,17 +37,18 @@ function App() {
         username: user.username,
         password: user.password,
       });
+      setUser({
+        name: "",
+        username: "",
+        email: "",
+        password: "",
+      })
     } catch (error) {
       console.log(error);
     }
   };
 
   const removeUser = async (uId) => {
-    // setUsers(
-    //   users.filter((u) => {
-    //     return u.id !== uId && u;
-    //   })
-    // );
     try {
       let response = await axios.delete(`https://centarnitbe.herokuapp.com/user/${uId}`)
       console.log(response)
@@ -81,10 +83,19 @@ function App() {
       name: "",
       username: "",
       email: "",
-      is_active: false,
+      password: "",
     });
     setAddEdit(1);
   };
+
+  const getActiveUsers = async () => {
+    try {
+      let response = await axios.get("https://centarnitbe.herokuapp.com/user/all/active")
+      setUsers(response.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const inputHandler = (e) => {
     e.preventDefault();
@@ -108,7 +119,7 @@ function App() {
 
   useEffect(() => {
     getUsersData();
-  }, [users]);
+  }, []);
 
   return (
     <div className="container">
@@ -144,7 +155,7 @@ function App() {
           <>
             <label htmlFor="password">Password</label>
             <input
-              type="password"
+              type="text"
               name="password"
               value={user.password}
               onChange={(e) => {
@@ -185,6 +196,8 @@ function App() {
           })}
         </tbody>
       </table>
+      <button onClick={getActiveUsers}>Get active users</button>
+      <button onClick={getUsersData}>Get all users</button>
     </div>
   );
 }
