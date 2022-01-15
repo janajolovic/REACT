@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
     return (
-        <div>
+        <div className='login'>
+            <h1>Login</h1>
             <input type="text" name="" id="" />
             <input type="text" name="" id="" />
-            <button>Login</button>
-            <button><Link to="/">Go to home page</Link></button>
+            <button><Link to="users">Login</Link></button>
         </div>
     )
 }
