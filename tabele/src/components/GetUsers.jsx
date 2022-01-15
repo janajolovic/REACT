@@ -40,16 +40,17 @@ const GetUsers = () =>  {
         email: "",
         password: "",
       })
-    } catch (error) {
+      getUsersData();
+    } 
+    catch (error) {
       console.log(error);
     }
   };
 
-  const removeUser = async (uId) => {
-    try {
-      let response = await axios.delete(`https://centarnitbe.herokuapp.com/user/${uId}`)
-      console.log(response)
-      console.log(uId)
+  const removeUser = (uId) => {
+    try { 
+      axios.delete(`https://centarnitbe.herokuapp.com/user/hard_delete/${uId}`)
+      getUsersData()
     } catch (err) {
       console.log(err)
     }
@@ -116,7 +117,7 @@ const GetUsers = () =>  {
 
   useEffect(() => {
     getUsersData();
-  }, []);
+  }, [users]);
 
   return (
     <div className="container">
