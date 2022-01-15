@@ -1,7 +1,6 @@
 .container {
   margin: 50px;
   padding: 30px;
-  border: 1px solid black;
   width: 90%;
 }
 
@@ -9,14 +8,62 @@
   width: 100%;
   background-color: #f4f4f4;
   border: 1px solid black;
+  border-collapse: collapse;
 }
+
+.user-table tr td, th {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.user-table thead {
+  background-color: #0c1369;
+  color: white;
+  border-color: white;
+}
+
+.user-table th {
+  border-color: white;
+}
+
+.user-table button {
+  background-color: #0c1369;
+  color: white;
+  margin: 0px 5px;
+  border: none;
+  outline: none;
+  padding: 4px 8px;
+}
+
+.user-table button:hover {
+  background-color: #131e97;
+}
+
 .form-container {
   width: 30%;
-  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 20px;
+  margin-bottom: 40px;
+  margin-top: -40px;
+}
+
+.form-container input {
+  padding: 8px 14px;
+  margin: 10px 0px;
+}
+
+.form-container button {
+  padding: 8px 14px;
+  background-color: #0c1369;
+  width: 50%;
+  border: none;
+  color: white;
+  align-self: center;
+  margin-top: 10px;
+}
+.form-container button:hover {
+  background-color: #131e97;
 }
 
 body {
@@ -42,7 +89,7 @@ body {
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  background-color: #0e0e38;
+  background-color: #0c1369;
 }
 
 .login input {
@@ -63,4 +110,8 @@ body {
   margin: 20px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
+}
+
+.form-container label[for="name"] {
+  margin-top: 20px;
 }

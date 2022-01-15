@@ -121,6 +121,8 @@ const GetUsers = () =>  {
   return (
     <div className="container">
       <div className="form-container">
+        <button className="btn" onClick={getActiveUsers}>Get active users</button>
+        <button className="btn" onClick={getUsersData}>Get all users</button>
         <label htmlFor="name">Name</label>
         <input
           type="text"
@@ -193,8 +195,6 @@ const GetUsers = () =>  {
           })}
         </tbody>
       </table>
-      <button onClick={getActiveUsers}>Get active users</button>
-      <button onClick={getUsersData}>Get all users</button>
     </div>
   );
 }

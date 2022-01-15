@@ -7,7 +7,7 @@ const Login = () => {
             <h1>Login</h1>
             <input type="text" name="" id="" />
             <input type="text" name="" id="" />
-            <button><Link to="users">Login</Link></button>
+            <Link to="users"><button>Login</button></Link>
         </div>
     )
 }
