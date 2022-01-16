@@ -122,7 +122,7 @@ body {
   align-items: flex-start;
   flex-direction: column;
   margin: auto;
-  width: 40%;
+  width: 45%;
   border-radius: 10px;
   border: 2px solid #0c1369;
   padding: 20px;
@@ -141,3 +141,4 @@ body {
   border-radius: 10px;
   margin: 20px auto;
 }
+
