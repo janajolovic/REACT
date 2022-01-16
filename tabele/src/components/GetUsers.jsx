@@ -90,6 +90,7 @@ const GetUsers = () =>  {
     try {
       let response = await axios.get("https://centarnitbe.herokuapp.com/user/all/active")
       setUsers(response.data)
+      console.log(response.data)
     } catch (err) {
       console.log(err)
     }
@@ -122,7 +123,7 @@ const GetUsers = () =>  {
   return (
     <div className="container">
       <div className="form-container">
-        <button className="btn" onClick={getActiveUsers}>Get active users</button>
+        <button className="btn" onClick={() => {getActiveUsers()}}>Get active users</button>
         <button className="btn" onClick={getUsersData}>Get all users</button>
         <label htmlFor="name">Name</label>
         <input
