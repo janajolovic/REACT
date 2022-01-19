@@ -4,6 +4,7 @@ import "./App.css";
 import GetUsers from "./components/GetUsers";
 import Login from "./components/Login";
 import UserInfo from "./components/UserInfo";
+import Register from "./components/Register";
 
 
 
@@ -15,6 +16,7 @@ function App () {
         <Route path="/" element={<Login />} />
         <Route path="/users" element={<GetUsers />} />
         <Route path="/:id" element={<UserInfo />} /> 
+        <Route path="/register" element={<Register />} /> 
       </Routes>
     </div>
   </div>)
