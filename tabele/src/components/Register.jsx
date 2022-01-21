@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Register = () => {
-    const [input, setInput] = useState({ email: "", password: ""});
+    const [input, setInput] = useState({ email: "", username: "", name: "", password: ""});
 
     const inputHandler = (e) => {
         e.preventDefault();
@@ -15,9 +15,9 @@ const Register = () => {
         });
       };
 
-      const login = async () => {
+      const register = async () => {
         try {
-            let response = await axios.post("https://serene-fortress-45917.herokuapp.com/auth/login", input);
+            let response = await axios.post("https://serene-fortress-45917.herokuapp.com/auth/signup", input);
             console.log(response)
         } catch (err) {
             console.log(err)
@@ -26,9 +26,17 @@ const Register = () => {
 
     return (
         <div className='login'>
-            <h1>Login</h1>
+            <h1>Register</h1>
             <form>
                 <input type="text" name="email" placeholder='email' value={input.email} 
+                    onChange={(e) => {
+                        inputHandler(e);
+                    }}/>
+                <input type="text" name="username" placeholder='username' value={input.username} 
+                    onChange={(e) => {
+                        inputHandler(e);
+                    }}/>
+                <input type="text" name="name" placeholder='name' value={input.name} 
                     onChange={(e) => {
                         inputHandler(e);
                     }}/>
@@ -37,7 +45,7 @@ const Register = () => {
                         inputHandler(e);
                     }}/>
                 <Link to="users"><button
-                    onClick={login}>Login</button></Link>
+                    onClick={register}>Register</button></Link>
             </form>
         </div>
     )

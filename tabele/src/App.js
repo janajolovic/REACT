@@ -7,7 +7,6 @@ import UserInfo from "./components/UserInfo";
 import Register from "./components/Register";
 
 
-
 function App () {
   return (
   <div>
@@ -15,7 +14,7 @@ function App () {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/users" element={<GetUsers />} />
-        <Route path="/:id" element={<UserInfo />} /> 
+        <Route path="/user/:id" element={<UserInfo />} /> 
         <Route path="/register" element={<Register />} /> 
       </Routes>
     </div>

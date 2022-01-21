@@ -15,10 +15,14 @@ const Login = () => {
         });
       };
 
+    //   https://serene-fortress-45917.herokuapp.com/auth/signup
+
       const login = async () => {
         try {
-            let response = await axios.post("https://serene-fortress-45917.herokuapp.com/auth/login", input);
-            console.log(response)
+            if (input.email !== "" && input.password !== "") {
+                let response = await axios.post("https://serene-fortress-45917.herokuapp.com/auth/login", input);
+                console.log(response)
+            }
         } catch (err) {
             console.log(err)
         }
@@ -36,8 +40,8 @@ const Login = () => {
                     onChange={(e) => {
                         inputHandler(e);
                     }}/>
-                <Link to="users"><button
-                    onClick={login}>Login</button></Link>
+                <Link to="/users"><button onClick={login}>Login</button></Link>
+                <Link to="/register"><p>Register</p></Link>
             </form>
         </div>
     )

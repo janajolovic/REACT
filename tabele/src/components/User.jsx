@@ -20,7 +20,7 @@ const User = ({ usr, rmUser, editUser}) => {
           editUser(usr.id)
         }}>
           Edit</button>
-        <Link to={`/${usr.id}`}> <button>User Info</button></Link>
+        <Link to={`/user/${usr.id}`}> <button>User Info</button></Link>
       </td>
     </tr>
   );

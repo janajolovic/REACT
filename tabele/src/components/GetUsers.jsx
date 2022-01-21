@@ -118,7 +118,7 @@ const GetUsers = () =>  {
 
   useEffect(() => {
     getUsersData();
-  }, [users]);
+  }, []);
 
 
 
