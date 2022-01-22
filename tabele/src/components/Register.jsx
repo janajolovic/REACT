@@ -44,7 +44,7 @@ const Register = () => {
                     onChange={(e) => {
                         inputHandler(e);
                     }}/>
-                <Link to="users"><button
+                <Link to="/"><button
                     onClick={register}>Register</button></Link>
             </form>
         </div>

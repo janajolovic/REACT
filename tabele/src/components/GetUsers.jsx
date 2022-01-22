@@ -120,11 +120,18 @@ const GetUsers = () =>  {
     getUsersData();
   }, []);
 
-
+  const logout = () => {
+    localStorage.removeItem("access_token")
+    localStorage.removeItem("refresh_token")
+    sessionStorage.removeItem("access_token")
+    sessionStorage.removeItem("refresh_token")
+  }
 
   return (
     <div className="container">
       <div className="form-container">
+        <p>{JSON.parse(localStorage.getItem("access_token"))}</p>
+        <button className="btn" onClick={logout}>Log out</button>
         <button className="btn" onClick={() => {getActiveUsers()}}>Get active users</button>
         <button className="btn" onClick={getUsersData}>Get all users</button>
         <label htmlFor="name">Name</label>

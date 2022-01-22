@@ -15,13 +15,19 @@ const Login = () => {
         });
       };
 
-    //   https://serene-fortress-45917.herokuapp.com/auth/signup
 
       const login = async () => {
         try {
             if (input.email !== "" && input.password !== "") {
                 let response = await axios.post("https://serene-fortress-45917.herokuapp.com/auth/login", input);
-                console.log(response)
+                console.log(response.data.data)
+                localStorage.setItem("refresh_token", JSON.stringify(response.data.data.refresh_token));
+                localStorage.setItem("access_token", JSON.stringify(response.data.data.access_token));
+                sessionStorage.setItem("refresh_token", JSON.stringify(response.data.data.refresh_token));
+                sessionStorage.setItem("access_token", JSON.stringify(response.data.data.access_token));
+                console.log()
+                document.cookie = `access_token=${JSON.stringify(response.data.data.access_token)} expires=${Date.now() + 5000}`;
+                document.cookie = `refresh_token=${JSON.stringify(response.data.data.refresh_token)}`;
             }
         } catch (err) {
             console.log(err)
