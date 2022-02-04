@@ -25,7 +25,6 @@ const Login = () => {
                 localStorage.setItem("access_token", JSON.stringify(response.data.data.access_token));
                 sessionStorage.setItem("refresh_token", JSON.stringify(response.data.data.refresh_token));
                 sessionStorage.setItem("access_token", JSON.stringify(response.data.data.access_token));
-                console.log()
                 document.cookie = `access_token=${JSON.stringify(response.data.data.access_token)} expires=${Date.now() + 5000}`;
                 document.cookie = `refresh_token=${JSON.stringify(response.data.data.refresh_token)}`;
             }
